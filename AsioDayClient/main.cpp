@@ -22,10 +22,11 @@ int main(int argc, char** argv)
         tcp::socket socket(io);
         boost::asio::connect(socket,endpoints);
 
-        char ch;
+        //char ch;
 
-        while (std::cin >> ch)
+        while (/*std::cin >> ch*/1)
         {
+#if 0
             boost::system::error_code ignored_error;
 
             switch (ch)
@@ -52,9 +53,10 @@ int main(int argc, char** argv)
                 std::cout.write("Close!", 6);
                 return 0;
             }
-#if 0
+#endif
+#if 1
             boost::array<char, 128> buf;
-            //boost::system::error_code error;
+            boost::system::error_code ignored_error;
 
             size_t len = socket.read_some(boost::asio::buffer(buf), ignored_error);
 
