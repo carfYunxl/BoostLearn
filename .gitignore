@@ -32,3 +32,5 @@
 *.app
 
 /boost_1_78_0
+/NetAsio/bin
+/NetAsio/.vs
