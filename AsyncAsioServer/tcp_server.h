@@ -1,12 +1,7 @@
 #ifndef TCP_SERVER_H_
 #define TCP_SERVER_H_
 
-#include <iostream>
-#include <boost/asio.hpp>
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/enable_shared_from_this.hpp>
-#include <string>
+#include "CommonHeader.h"
 
 using boost::asio::ip::tcp;
 
@@ -39,7 +34,7 @@ public:
         boost::asio::async_write
         (
             socket_,
-            boost::asio::buffer("连接成功！"),
+            boost::asio::buffer("连接成功！\n"),
             boost::bind
             (
                 &Tcp_connection::Handle_write,
@@ -48,6 +43,12 @@ public:
                 boost::asio::placeholders::bytes_transferred
             )
         );
+    }
+
+    void Write(const std::string& msg)
+    {
+        boost::system::error_code ignored_error;
+        boost::asio::write(socket_, boost::asio::buffer(msg), ignored_error);
     }
 
 private:
@@ -77,7 +78,7 @@ private:
     void Start_accept()
     {
         Tcp_connection::pointer new_connection = Tcp_connection::Create(io_);
-
+        vec.push_back(new_connection);
         acceptor_.async_accept
         (
             new_connection->socket(),
@@ -96,6 +97,10 @@ private:
         if (!error)
         {
             new_connection->Start();
+            for (size_t i = 0;i < vec.size();++i)
+            {
+                vec.at(i)->Write("Hello World!\n");
+            }
         }
 
         Start_accept();
@@ -103,6 +108,7 @@ private:
 
     boost::asio::io_context& io_;
     tcp::acceptor acceptor_;
+    std::vector<Tcp_connection::pointer> vec;
 };
 
 
