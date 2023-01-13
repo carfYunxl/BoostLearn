@@ -35,26 +35,30 @@
 /NetAsio/bin
 /NetAsio/.vs
 
-/AsioDayClient/*.vcxproj
-/AsioDayClient/*.filters
-/AsioDayClient/*.user
+/AsioDayClient/AsioDayClient.vcxproj
+/AsioDayClient/AsioDayClient.vcxproj.filters
+/AsioDayClient/AsioDayClient.vcxproj.user
 
-/AsioDayServer/*.vcxproj
-/AsioDayServer/*.filters
-/AsioDayServer/*.user
+/AsioDayServer/AsioDayServer.vcxproj
+/AsioDayServer/AsioDayServer.vcxproj.filters
+/AsioDayServer/AsioDayServer.vcxproj.user
 
-/AsyncAsioServer/*.vcxproj
-/AsyncAsioServer/*.filters
-/AsyncAsioServer/*.user
+/AsyncAsioServer/AsyncAsioServer.vcxproj
+/AsyncAsioServer/AsyncAsioServer.vcxproj.filters
+/AsyncAsioServer/AsyncAsioServer.vcxproj.user
 
-/NetAsio/NetAsio/*.vcxproj
-/NetAsio/NetAsio/*.filters
-/NetAsio/NetAsio/*.user
+/NetAsio/NetAsio/NetAsio.vcxproj
+/NetAsio/NetAsio/NetAsio.vcxproj.filters
+/NetAsio/NetAsio/NetAsio.vcxproj.user
 
-/UdpClient/*.vcxproj
-/UdpClient/*.filters
-/UdpClient/*.user
+/UdpClient/UdpClient.vcxproj
+/UdpClient/UdpClient.vcxproj.filters
+/UdpClient/UdpClient.vcxproj.user
 
-/UdpServer/*.vcxproj
-/UdpServer/*.filters
-/UdpServer/*.user
+/UdpServer/UdpServer.vcxproj
+/UdpServer/UdpServer.vcxproj.filters
+/UdpServer/UdpServer.vcxproj.user
+
+*.vcxproj
+*.filters
+*.user
