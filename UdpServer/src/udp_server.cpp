@@ -14,13 +14,16 @@ int main()
             boost::array<char, 1> recv_buf;
             udp::endpoint remote_endpoint;
 
-            socket.receive_from(boost::asio::buffer(recv_buf),remote_endpoint);
+            size_t len = socket.receive_from(boost::asio::buffer(recv_buf),remote_endpoint);
 
-            std::cout << remote_endpoint.address().to_string() << std::endl;
+            if (len > 0)
+            {
+                std::cout << remote_endpoint.address().to_string() << std::endl;
 
-            std::cout << remote_endpoint.port() << std::endl;
+                std::cout << remote_endpoint.port() << std::endl;
 
-            std::cout << remote_endpoint.data()->sa_family << std::endl;
+                std::cout << remote_endpoint.data()->sa_family << std::endl;
+            }
 
 
             boost::system::error_code ignored_error;
