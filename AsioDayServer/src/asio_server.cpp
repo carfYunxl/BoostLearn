@@ -39,7 +39,7 @@ int main()
             if (len > 0)
             {
                 std::cout << "len = " << len << std::endl;
-                for (int i = 0;i < len;++i)
+                for (size_t i = 0;i < len;++i)
                 {
                     std::cout << "buf = " << buf[i] << std::endl;
                 }

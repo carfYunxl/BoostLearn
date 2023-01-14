@@ -31,7 +31,7 @@
 *.out
 *.app
 
-/boost_1_78_0
+/boost_source
 /NetAsio/bin
 /NetAsio/.vs
 
