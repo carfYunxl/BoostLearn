@@ -134,27 +134,42 @@ public:
 
     void start()
     {
-        socket_.async_read_some(boost::asio::buffer(data_),
-            boost::asio::bind_allocator(
+        socket_.async_read_some
+        (
+            boost::asio::buffer(data_),
+            boost::asio::bind_allocator
+            (
                 handler_allocator<int>(handler_memory_),
-                boost::bind(&session::handle_read,
+                boost::bind
+                (
+                    &session::handle_read,
                     shared_from_this(),
                     boost::asio::placeholders::error,
-                    boost::asio::placeholders::bytes_transferred)));
+                    boost::asio::placeholders::bytes_transferred
+                )
+            )
+        );
     }
 
-    void handle_read(const boost::system::error_code& error,
-        size_t bytes_transferred)
+    void handle_read(const boost::system::error_code& error, size_t bytes_transferred)
     {
         if (!error)
         {
-            boost::asio::async_write(socket_,
+            boost::asio::async_write
+            (
+                socket_,
                 boost::asio::buffer(data_, bytes_transferred),
-                boost::asio::bind_allocator(
+                boost::asio::bind_allocator
+                (
                     handler_allocator<int>(handler_memory_),
-                    boost::bind(&session::handle_write,
+                    boost::bind
+                    (
+                        &session::handle_write,
                         shared_from_this(),
-                        boost::asio::placeholders::error)));
+                        boost::asio::placeholders::error
+                    )
+                )
+            );
         }
     }
 
@@ -162,13 +177,21 @@ public:
     {
         if (!error)
         {
-            socket_.async_read_some(boost::asio::buffer(data_),
-                boost::asio::bind_allocator(
+            socket_.async_read_some
+            (
+                boost::asio::buffer(data_),
+                boost::asio::bind_allocator
+                (
                     handler_allocator<int>(handler_memory_),
-                    boost::bind(&session::handle_read,
+                    boost::bind
+                    (
+                        &session::handle_read,
                         shared_from_this(),
                         boost::asio::placeholders::error,
-                        boost::asio::placeholders::bytes_transferred)));
+                        boost::asio::placeholders::bytes_transferred
+                    )
+                )
+            );
         }
     }
 
@@ -193,13 +216,20 @@ public:
         acceptor_(io_context, tcp::endpoint(tcp::v4(), port))
     {
         session_ptr new_session(new session(io_context_));
-        acceptor_.async_accept(new_session->socket(),
-            boost::bind(&server::handle_accept, this, new_session,
-                boost::asio::placeholders::error));
+        acceptor_.async_accept
+        (
+            new_session->socket(),
+            boost::bind
+            (
+                &server::handle_accept, 
+                this, 
+                new_session,
+                boost::asio::placeholders::error
+            )
+        );
     }
 
-    void handle_accept(session_ptr new_session,
-        const boost::system::error_code& error)
+    void handle_accept(session_ptr new_session, const boost::system::error_code& error)
     {
         if (!error)
         {
@@ -207,9 +237,17 @@ public:
         }
 
         new_session.reset(new session(io_context_));
-        acceptor_.async_accept(new_session->socket(),
-            boost::bind(&server::handle_accept, this, new_session,
-                boost::asio::placeholders::error));
+        acceptor_.async_accept
+        (
+            new_session->socket(),
+            boost::bind
+            (
+                &server::handle_accept, 
+                this, 
+                new_session,
+                boost::asio::placeholders::error
+            )
+        );
     }
 
 private:

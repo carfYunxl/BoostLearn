@@ -2,6 +2,7 @@
 
 int main(int argc, char* argv[])
 {
+#if 0
     try
     {
         if (argc != 2)
@@ -21,6 +22,7 @@ int main(int argc, char* argv[])
     {
         std::cerr << "Exception: " << e.what() << "\n";
     }
+#endif
 
     return 0;
 }
